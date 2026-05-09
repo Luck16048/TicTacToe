@@ -10,7 +10,7 @@ public class TicTacToe {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         while(true) {
-            initBoard();
+            board = initBoard(board);
             currentPlayer = 'X';
 
             while (true) {
@@ -41,10 +41,11 @@ public class TicTacToe {
         }
     }
 
-    static void initBoard() {
+    public static char[][] initBoard(char[][] board) {
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++)
                 board[i][j] = ' ';
+        return board;
     }
 
     static void printBoard() {
