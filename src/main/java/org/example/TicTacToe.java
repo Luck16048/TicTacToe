@@ -8,25 +8,36 @@ public class TicTacToe {
     static char currentPlayer = 'X';
 
     public static void main(String[] args) {
-        initBoard();
+        Scanner sc = new Scanner(System.in);
+        while(true) {
+            initBoard();
+            currentPlayer = 'X';
 
-        while (true) {
-            printBoard();
-            makeMove();
-
-            if (checkWin(currentPlayer)) {
+            while (true) {
                 printBoard();
-                System.out.println("Player " + currentPlayer + " wins!");
+                makeMove();
+
+                if (checkWin(currentPlayer)) {
+                    printBoard();
+                    System.out.println("Player " + currentPlayer + " wins!");
+                    break;
+                }
+
+                if (isDraw()) {
+                    printBoard();
+                    System.out.println("It`s a draw!");
+                    break;
+                }
+
+                currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
+            }
+            System.out.print("Want to play again? (yes/no):");
+            String answer = sc.next().toLowerCase();
+
+            if(!answer.equals("yes")){
+                System.out.println("Thanks for the game! 👋");
                 break;
             }
-
-            if (isDraw()) {
-                printBoard();
-                System.out.println("It`s a draw!");
-                break;
-            }
-
-            currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
         }
     }
 
